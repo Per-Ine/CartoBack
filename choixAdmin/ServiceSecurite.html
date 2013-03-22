@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<head>
+	<meta charset="utf-8" />
+	<LINK rel="stylesheet" type="text/css" href="../style.css">
+</head>
+<body>
+
+<h1>Super Administrateur</h1>
+<h2>Vous souhaitez modifier ou supprimer un service de la rubrique Sécurité</h2>
+
+<form method="POST" action="">
+	<label><input type="radio" name="service">Extincteurs</label><br>
+	<label><input type="radio" name="service">Sortie de Secours</label><br>
+	<label><input type="radio" name="service">Porte coupe feu</label><br>
+
+	<input type="submit" name="Envoi" value="Modifier" onclick="">
+	<input type="submit" name="Envoi" value="Supprimer" onclick="">
+
+</form>
+
+<p>Nom du service actuel: Extincteurs<br>
+	Nouveau nom : <input type="text" >
+</p>
+
+<p>Description du service :service extincteur<br>
+	Nouvelle description : <textarea></textarea>
+</p>
+
+<p>Catégorie actuelle: Sécurité<br>
+	Modifier la catégorie:
+	<select>
+		<option>Sécurité</option>
+		<option>Handicap</option>
+	</select>
+	</p>
+
+<div class="footer">
+<a href="../accueilSAdmin.html">Retour Accueil</a>
+</div>
+</body>
