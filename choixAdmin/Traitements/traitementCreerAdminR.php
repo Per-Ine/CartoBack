@@ -27,18 +27,16 @@
 	connectionBD();
 
  // on écrit la requête sql 
-    $sql = "INSERT INTO administrateur(id_admin, login_admin, password_admin, role_admin) VALUES('','$login', 'mdp', '$role')"; 
+    $sql = "INSERT INTO administrateur(id_admin, login_admin, password_admin, role_admin) VALUES('','$login', '$mdp', '$role')"; 
      
     // on insère les informations du formulaire dans la table 
     mysql_query($sql) or die('Erreur SQL !'.$sql.'<br>'.mysql_error()); 
-
-
 	}
 
 	else 
 	{
 		echo "Veuillez saisir deux mdp identiques <br>";
-		echo "<a href='../creerAdminR.php'>Retour à la saisie des informations </a>";
+		echo "<a href='../creerAdminR.php'>Retour à la saisie des informations </a><br>";
 	}
 ?>
 

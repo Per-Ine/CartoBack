@@ -22,13 +22,12 @@
 	<label>Identifiant: </label><input type="text" name="identifiant" required><br>
 	<label>Mot de passe: </label><input type="password" name="mdp" required><br>
 	<label>Confirmer le mot de passe: </label><input type="password" name="ConfirmerMdp" required><br>
-	<br>
 
 	<label>Rôle: </label><input type="text" name="role"><br>
 
 	</div>
 
-	<p>Sélectionner un ou plusieurs bâtiments:<br>
+	<p>Sélectionner un ou plusieurs bâtiments: 
 	<?php
 	getBatiments();
 	?>

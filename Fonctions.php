@@ -9,18 +9,20 @@ $db = mysql_connect('localhost','user', 'mdp');
 mysql_select_db('projetcarto',$db); 
 }
 
-//Affichage des batiments dans liste de sélection:
-function getBatiments(){
+//*********************************************************************************************//
 
+//Affichage des batiments dans liste de sélection:
+function getBatiments()
+{
 	connectionBD();
 
 	$sql = "SELECT nom_batiment FROM batiment;";
 	$req = mysql_query($sql) or die('Erreur SQL !<br>'.$sql.'<br>'.mysql_error()); 
 
-	echo '<SELECT>';
+	echo "<SELECT name='batiment'>";
 	while($data = mysql_fetch_assoc($req))
 	{
-		echo '<OPTION>'.$data['nom_batiment'].'</OPTION>';
+		echo '<OPTION name="'.$data['nom_batiment'].'">'.$data['nom_batiment'].'</OPTION>';
 	}
 	echo "</SELECT>";
 }
@@ -87,24 +89,64 @@ while($data = mysql_fetch_assoc($req))
 	}
 
 //*********************************************************************************************//
-
-	//Affichage des données de l'admin de rubrique à modifier
-	function MSAdminR()
+	//Affichage des couleurs disponibles
+	function listecouleursDispo()
 	{
-		$selectAdmin = $_POST['adminR'];
 		connectionBD();
 
-		// on crée la requête SQL 
-		$sql = 'SELECT login_admin, password_admin, role_admin  FROM administrateur'; 
-
-		// on envoie la requête 
-		$req = mysql_query($sql) or die('Erreur SQL !<br>'.$sql.'<br>'.mysql_error());
+		// Selection des couleurs qui n'appartiennent pas déjà à un marqueur:
+		$sql = 'SELECT * FROM couleur WHERE id_couleur NOT IN (SELECT id_couleur FROM categories)'; 
 		
-		$data = mysql_fetch_assoc($req);
-		if($selectAdmin == $data['login_admin'])
+		// on envoie la requête 
+		$req = mysql_query($sql) or die('Erreur SQL !<br>'.$sql.'<br>'.mysql_error()); 
+
+		// on fait une boucle qui va faire un tour pour chaque enregistrement
+		echo "<SELECT name='couleurDispo'>";
+		while($data = mysql_fetch_assoc($req)) 
 		{
-			echo "Login actuel:".$data['login_admin']."<br> <input type='text' name='changerLogin'> <br>";
+			echo '<OPTION name='.$data['nom_couleur'].'>'.$data['nom_couleur'].'</OPTION>';
 		}
-		else {echo "Erreur de correspondance ?";}
+		echo "</SELECT>";
+	}
+
+//*********************************************************************************************//
+	function idAdmin($nomAdmin)
+	{
+		connectionBD();
+
+		// Selection des couleurs qui n'appartiennent pas déjà à un marqueur:
+		$sql = 'SELECT id_Admin FROM administrateur WHERE login_admin ="$nomAdmin"'; 
+		
+		// on envoie la requête 
+		$req = mysql_query($sql) or die('Erreur SQL !<br>'.$sql.'<br>'.mysql_error()); 
+		return $req;
+	}
+
+//*********************************************************************************************//
+	
+	function idBatiment($batiment)
+	{
+		connectionBD();
+
+		// Selection des couleurs qui n'appartiennent pas déjà à un marqueur:
+		$sql = 'SELECT id_batiment FROM batiment WHERE nom_batiment ="'.$batiment.'"'; 
+		
+		// on envoie la requête 
+		$req = mysql_query($sql) or die('Erreur SQL !<br>'.$sql.'<br>'.mysql_error()); 
+		return $req;
+	}
+
+//*********************************************************************************************//
+
+	function idCouleur($nomCouleur)
+	{
+		connectionBD();
+
+		// Selection des couleurs qui n'appartiennent pas déjà à un marqueur:
+		$sql = 'SELECT id_couleur FROM couleur WHERE nom_couleur ="'.$nomCouleur.'"'; 
+		
+		// on envoie la requête 
+		$req = mysql_query($sql) or die('Erreur SQL !<br>'.$sql.'<br>'.mysql_error()); 
+		return $req;
 	}
 ?>

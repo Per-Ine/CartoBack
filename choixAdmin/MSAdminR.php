@@ -17,7 +17,7 @@
 	<div class="infos">
 	
 	<form name="formAdminR" method="POST" action="">
-	<p>Sélectionner la rubrique du service à modifier:<br>
+	<p>Sélectionner l'administrateur à modifier:<br>
 		<?php 
 			listeAdminR();
 		?>
@@ -40,18 +40,29 @@
 		
 		$data = mysql_fetch_assoc($req);
 
+		//Formulaire Modifier l'administrateur de rubrique:
 		echo "<fieldset><legend>Modifier cet Administrateur</legend>";
-		echo "<form name='changerAdmin' method='POST' action='Traitements/traitementMSAdminR.php'";
+		echo "<form name='changerAdmin' method='POST' action='Traitements/traitementModifAdminR.php'";
 
-		echo "<label>Modifier le login: </label> <input type='text' name='changerLogin' value='".$data['login_admin']."'> <br>";
+		echo "<div class='infos'><label>Modifier le login: </label> <input type='text' name='changerLogin' value='".$data['login_admin']."'> <br>";
 
-		echo "<label>Modifier le mot de passe: </label> <input type='text' name='changerMdp' value='".$data['password_admin']."'> <br>";
+		echo "<label>Modifier le mot de passe: </label> <input type='password' name='changerMdp' value='".$data['password_admin']."'> <br>";
+
+		echo "<label>Confirmer le mot de passe: </label> <input type='password' name='confirmerMdp'> <br>";
 
 		echo "<label>Modifier le role: </label> <input type='text' name='changerRole' value='".$data['role_admin']."'> </p>";		
 
-		echo "<input type='submit' name='modifAdminR' value='Modifier'></fieldset>" ;
+		echo "<input type='hidden' name='selectAdmin' VALUE='".$selectAdmin."'>";
 
+		echo "<input type='submit' name='modifAdminR' value='Modifier'></div></form></fieldset>" ;
 
+		//Formulaire Supprimer Administrateur de rubrique;
+		echo "<fieldset><legend>Supprimer cet Administrateur</legend>";
+		echo "<form name='supprimerAdmin' method='POST' action='Traitements/traitementSupprAdminR.php'";
+		echo "<label>Supprimer l'Administrateur : ".$selectAdmin." ?</label><br>";
+		echo "<input type='hidden' name='selectAdmin' VALUE='".$selectAdmin."'>";
+
+		echo "<input type='submit' name='SupprAdminR' value='Supprimer'></form></fieldset><br>" ;
 	}else{ 
 	echo 'Choix NON effectué !!';
 	} 
