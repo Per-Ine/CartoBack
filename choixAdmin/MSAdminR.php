@@ -48,7 +48,7 @@
 
 		echo "<label>Modifier le mot de passe: </label> <input type='password' name='changerMdp' value='".$data['password_admin']."'> <br>";
 
-		echo "<label>Confirmer le mot de passe: </label> <input type='password' name='confirmerMdp'> <br>";
+		echo "<label>Confirmer le mot de passe: </label> <input type='password' name='confirmerMdp' value='".$data['password_admin']."'> <br>";
 
 		echo "<label>Modifier le role: </label> <input type='text' name='changerRole' value='".$data['role_admin']."'> </p>";		
 
