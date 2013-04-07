@@ -1,3 +1,7 @@
+<?php
+
+	require_once("../Fonctions.php");
+?>
 
 <!DOCTYPE html>
 <head>
@@ -11,11 +15,25 @@
 
 <div class="formulaire">
 	<div class="infos">
-	
-	<p>Sélectionner la rubrique du service à modifier:<br>
-	<label><a href="ServiceSecurite.html">Sécurité</a></label><br>
-	<label><a href="ServiceHandicap.html">Handicap</a></label><br>
+	<form method="POST" name="formCat" action="">
+
+	<p>Sélectionner la rubrique du service à modifier:
+		<?php
+		getCategories();
+		?>
 	</p>
+	</form>
+	<?php
+	
+	if(isset($_POST['categorie']))
+	{ 
+		listeServices($_POST['categorie']);
+	}
+	if(isset($_POST['listeServices']))
+	{
+		$id = donneesServices($_POST['listeServices']);
+	}
+	?>
 	</div>
 	
 </div>

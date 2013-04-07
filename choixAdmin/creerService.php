@@ -1,3 +1,7 @@
+<?php
+
+	require_once("../Fonctions.php");
+?>
 
 <!DOCTYPE html>
 <head>
@@ -12,19 +16,23 @@
 </div>
 
 <div class="formulaire">
-	<form method="POST" action="">
-	<div class="infos">
-	<label>Nom du service</label><input type="text" name="nomService"><br>
-	<label>Description du service</label><textarea name="DescService"></textarea><br>
+	<form method="POST" action="Traitements\traitementCreerService.php">
+
+	<label>Nom du service : </label><input type="text" name="nomService"><br>
 
 	<p>Sélectionner une catégorie:
-	<select>
-		<option>Sécurité</option>
-		<option>Handicap</option>
-	</select>
+	<?php
+	getCategories();
+	?>
 	</p>
+	
+	<p><label>Sélectionner un bâtiment:</label>
+		<?php
+			getBatiments();
+		?>
+		</p>
+	<input type="submit" name="Envoi" value="Confirmer">
 
-	</div>
 	</form>
 </div>
 

@@ -34,7 +34,7 @@
 	$selectAdmin = $_POST['adminR'];
 
 		connectionBD();
-		$sql = 'SELECT login_admin, password_admin, role_admin  FROM administrateur WHERE login_admin = "'. $selectAdmin.'"'; 
+		$sql = 'SELECT login_admin, password_admin, role_admin  FROM administrateur WHERE id_admin = "'. $selectAdmin.'"'; 
 
 		$req = mysql_query($sql) or die('Erreur SQL !<br>'.$sql.'<br>'.mysql_error());
 		
@@ -52,15 +52,15 @@
 
 		echo "<label>Modifier le role: </label> <input type='text' name='changerRole' value='".$data['role_admin']."'> </p>";		
 
-		echo "<input type='hidden' name='selectAdmin' VALUE='".$selectAdmin."'>";
+		echo "<input type='hidden' name='selectAdmin' value='".$data['login_admin']."'>";
 
 		echo "<input type='submit' name='modifAdminR' value='Modifier'></div></form></fieldset>" ;
 
 		//Formulaire Supprimer Administrateur de rubrique;
 		echo "<fieldset><legend>Supprimer cet Administrateur</legend>";
 		echo "<form name='supprimerAdmin' method='POST' action='Traitements/traitementSupprAdminR.php'";
-		echo "<label>Supprimer l'Administrateur : ".$selectAdmin." ?</label><br>";
-		echo "<input type='hidden' name='selectAdmin' VALUE='".$selectAdmin."'>";
+		echo "<label>Supprimer l'Administrateur : ".$data['login_admin']." ?</label><br>";
+		echo "<input type='hidden' name='selectAdmin' value='".$data['login_admin']."'>";
 
 		echo "<input type='submit' name='SupprAdminR' value='Supprimer'></form></fieldset><br>" ;
 	}else{ 

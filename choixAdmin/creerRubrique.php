@@ -17,18 +17,12 @@
 
 <div class="formulaire">
 	<div class="infos">
-		<form method="POST" name="formRubrique" action="Traitements\traitementCreerRubriqueTEST.php">
+		<form method="POST" name="formRubrique" action="Traitements\traitementCreerRubrique.php">
 		<p><label>Nom de la rubrique</label><input type="text" name="nomRubrique" required></p>
 
 		<p><label>Sélectionner un administrateur:</label>
 			<?php
-				listeAdminR();
-			?>
-		</p>
-
-		<p><label>Sélectionner un bâtiment:</label>
-			<?php
-				getBatiments();
+				listeAdminDispo();
 			?>
 		</p>
 
