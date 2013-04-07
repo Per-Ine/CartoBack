@@ -168,17 +168,21 @@ function getCategorieByID($id){
 	//*Affichage des couleurs dispo + Affichage dans le select de la couleur de la categorie selectionnée
 	function getCouleurById($id){
 	connectionBD();
+	//Trie des couleurs dispo
 	$sql = "SELECT DISTINCT id_couleur, nom_couleur  FROM couleur WHERE id_couleur NOT IN (SELECT id_couleur FROM categories);";
 	$req = mysql_query($sql) or die('Erreur SQL !<br>'.$sql.'<br>'.mysql_error()); 
 
+	//Recup admin correspondant à l'id
+	$reqCouleur ="SELECT id_couleur, nom_couleur FROM couleur WHERE id_couleur = $id";
+	$queryCouleur = mysql_query($reqCouleur) or die('Erreur SQL !<br>'.$reqCouleur.'<br>'.mysql_error());
+	$couleur = mysql_fetch_assoc($queryCouleur);
+
 	echo '<SELECT name="couleur">';
+	echo '<OPTION value="'.$couleur['id_couleur'].'" selected = selected>'.$couleur['nom_couleur'].'</OPTION>';
+
 	while($data = mysql_fetch_assoc($req))
 	{
-		if($id == $data['id_couleur'])
-		{
-		echo '<OPTION value="'.$data['id_couleur'].'" selected = selected>'.$data['nom_couleur'].'</OPTION>';
-		}
-		else echo '<OPTION value="'.$data['id_couleur'].'">'.$data['nom_couleur'].'</OPTION>';
+		echo '<OPTION value="'.$data['id_couleur'].'">'.$data['nom_couleur'].'</OPTION>';
 	}
 	echo "</SELECT>";
 }
